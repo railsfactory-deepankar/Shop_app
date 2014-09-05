@@ -30,10 +30,12 @@ class LineItemsController < ApplicationController
   # POST /line_items
   # POST /line_items.json
   def create
-    product = Product.find(params[:product_id])
-    @line_item = current_user.line_items.build(product: product)
+    @product = Product.find(params[:product_id])
+   # @line_item = current_user.line_items.build(product: @product)
+    @line_item = @product.add_product(@product.id, current_user)
     @line_item.user_id = current_user.id
-    @line_item.price = product.price
+    @line_item.price = @product.price
+
 
     respond_to do |format|
       if @line_item.save

@@ -9,7 +9,16 @@ validates :title, :description, :image_url, presence: true
  with:    %r{\.(gif|jpeg|jpg|png)\Z}i,
  message: 'must be a URL for GIF, JPEG, JPG or PNG image.'
 }
-
+ def add_product(product_id, current_user)
+        current_item = self.line_items.find_by(product_id: product_id)
+         if current_item
+          current_item.quantity += 1
+         else
+          current_item = current_user.line_items.build(product_id: product_id)
+      end
+        
+      current_item
+   end
 
 private
 # ensure that there are no line items referencing this product

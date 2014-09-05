@@ -11,7 +11,7 @@
         <td><%= mycart.product.title %></td>	
         <td><%= mycart.quantity %></td>
         <td><%= mycart.created_at %></td>
-        <td><%= number_to_currency(mycart.product.price) %></td>
+        <td><%= number_to_currency(mycart.product.price * mycart.quantity) %></td>
 
      </tr>
    <% end %>

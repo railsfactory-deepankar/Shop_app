@@ -9,9 +9,10 @@
      
       <tr>
          <td><%= item.product.title %></td>
-         <td class="item_price"><%= number_to_currency(item.product.price) %></td>
+         <td><%= item.quantity %></td>
+         <td class="item_price"><%= number_to_currency(item.product.price * item.quantity) %></td>
          
-         <% @arr << item.product.price %>
+         <% @arr << item.product.price * item.quantity  %>
      </tr>
    <% end %>
          <% $sum = @arr.sum %>
