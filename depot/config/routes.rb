@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resources :questions
   resources :mycart
+  resources :history
+   post "mycart/delete"
 
   get 'admin' => 'admin#index'
   controller :sessions do

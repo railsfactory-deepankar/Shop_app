@@ -7,6 +7,7 @@ ActiveAdmin.register_page "Dashboard" do
     table_for Product.order("created_at desc") do
       column :title
       column :created_at
+      
     end
 end
 

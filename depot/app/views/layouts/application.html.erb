@@ -24,7 +24,7 @@
     <%= javascript_tag "$('.locale input').hide()" %>
 <% end %>
 
-   
+       <%= image_tag("logo.jpeg") %>
    <center><b><u><%= @page_title || t('.title') %></u><b></center>
     
   </div>
@@ -43,29 +43,17 @@
           <%else%>
           <li><%= link_to t('.home'), store_path %></li>
           
-          <li><%=link_to 'history', mycart_index_path %></li>
+          <li><%=link_to 'history', history_index_path %></li>
+         
            <li><%= link_to 'Profile', current_user %></li>
+           <li><%= link_to 'mycart', mycart_index_path %></li>
           <%end%>
           
           
         </ul>
       </div>
     </div>
-      <% if (user_signed_in? && current_user.role == 'admin') %>
-      <div id="columns">
-      <div id="side1">
-        
-          <ul>
-            <li><%= link_to t('.orders'), orders_path%></li>
-            <li><%= link_to t('.products'), products_path %></li>
-            <li><%= link_to t('.users'), users_path %></li>
-          </ul>
-          
-        
-
-      </div>
-      </div>
-      <% end %>
+      
     <div id="columns">
       <div id="main"> 
         <%= yield %>

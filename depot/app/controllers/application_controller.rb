@@ -3,6 +3,9 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   #before_action :authorize
 #  before_action :authenticate_user!
+  def check_privileges!
+    redirect_to "/", notice: "You dont have enough privileges to be here" unless current_user.role == "admin"
+  end
   protect_from_forgery with: :exception
   before_action :set_i18n_locale_from_params
   before_filter :configure_permitted_parameters, if: :devise_controller?
