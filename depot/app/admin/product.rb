@@ -1,6 +1,6 @@
 ActiveAdmin.register Product do
 config.batch_actions = false
-  
+  config.filters = false 
 permit_params :list, :of, :attributes, :on, :model, :title, :description, :image, :price
 
  index do
@@ -8,7 +8,11 @@ permit_params :list, :of, :attributes, :on, :model, :title, :description, :image
     id_column
     column :title
     column :description
-    column :image
+    column :image do |img|
+          div  :class => "img" do
+          image_tag(img.image)
+          end
+        end
     column :price
     actions
   end
