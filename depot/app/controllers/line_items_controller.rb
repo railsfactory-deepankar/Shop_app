@@ -17,6 +17,8 @@ class LineItemsController < ApplicationController
    # @added_to_cart = current_user.line_items.added_to_cart
    @added_to_cart=current_user.line_items.where(order_id: nil)
   end
+  
+
 
   # GET /line_items/new
   def new
@@ -66,6 +68,7 @@ class LineItemsController < ApplicationController
   # DELETE /line_items/1
   # DELETE /line_items/1.json
   def destroy
+    
       current_user.line_items.where(order_id: nil).destroy_all
       respond_to do |format|
        format.html { redirect_to store_url, notice: 'cart was successfully destroyed.' }

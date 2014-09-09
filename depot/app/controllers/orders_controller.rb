@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   skip_before_action :authorize, only: [:new, :create]
   #before_action :set_cart, only: [:new, :create]
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  before_filter :check_privileges!, only: [:index]
+  #before_filter :check_privileges!, only: [:index]
 
   # GET /orders
   # GET /orders.json
@@ -15,17 +15,24 @@ class OrdersController < ApplicationController
   # GET /orders/1
   # GET /orders/1.json
   def show
-    redirect_to store_url 
+    #@orders = Order.where(user_id: current_user.id)
+    #@ordr = current_user.line_items.where(id: order_id) 
+    @order = Order.find(params[:id])
+
+
+    
   end
 
   # GET /orders/new
   def new
-    if current_user.line_items.empty?
+  
+    if current_user.line_items.where(order_id: nil).empty?
      redirect_to store_url, notice: "Your cart is empty"
-     return
+    else
+    @order = Order.new
     end
 
-    @order = Order.new
+    
   end
 
   # GET /orders/1/edit
@@ -43,6 +50,9 @@ class OrdersController < ApplicationController
     respond_to do |format|
       if @order.save
            current_user.line_items.where(:order_id => nil).update_all(:order_id => @order.id)
+            # @totalpri =  @line_item.totalprice(current_user)
+               
+            #    @order.update_attribute("totalprice", "#{@totalpri}")
          # current_user.line_items.added_to_cart.update_attributes(ordered: true).where(@order.user_id = current_user.id)
         
         OrderNotifier.received(@order).deliver

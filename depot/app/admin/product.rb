@@ -1,4 +1,5 @@
 ActiveAdmin.register Product do
+  
 config.batch_actions = false
   config.filters = false 
 permit_params :list, :of, :attributes, :on, :model, :title, :description, :image, :price
@@ -25,6 +26,20 @@ permit_params :list, :of, :attributes, :on, :model, :title, :description, :image
    end 
     f.actions
   end
+
+    show do |ad|
+      attributes_table do
+        row :title
+        row :description do |des|
+          sanitize(des.description)
+        end
+         row :price do |product|
+         div  :class => "price" do
+          number_to_currency(product.price)
+          end
+        end
+      end   
+    end
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #

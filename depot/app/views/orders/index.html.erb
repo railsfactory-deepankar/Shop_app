@@ -12,13 +12,12 @@
           <dt>Adress: <%= order.address %></dt>
           <dt>Email: <%= order.email %></dt>
           <dt>Pay type: <%= order.pay_type %></dt>
+
+
+
         </td>
      
-      <td class="list_actions">
-        <dd><%= link_to 'Show', order %>
-        <%= link_to 'Edit', edit_order_path(order) %>
-        <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
-      </td>
+      
       </tr>
     <% end %>
   </tbody>
