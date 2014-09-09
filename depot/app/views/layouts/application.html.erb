@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+  
+  
   <title>Pragprog Books Online Store</title>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -34,16 +36,11 @@
         
         <ul>
           
-
-          <li><%= link_to t('.home'), store_path %></li>
-          
-          <li><%=link_to 'history', history_index_path %></li>
          
-           <li><%= link_to 'Profile', current_user %></li>
-           <li><%= link_to 'mycart', mycart_index_path %></li>
-          
-          
-          
+          <li><%= link_to t('.home'), store_path %></li>
+          <li><%=link_to 'history', history_index_path %></li>
+          <li><%= link_to 'Profile', current_user %></li>
+          <li><%= link_to 'mycart', mycart_index_path %></li>
         </ul>
       </div>
     </div>
